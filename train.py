@@ -48,7 +48,11 @@ def main():
     """
     Path to save results.
     """
-    save_path = os.path.join(config['save_path'], config['dataset'], args.experimentid)
+    dataset_path = os.path.join(config['save_path'], config['dataset'])
+    if not os.path.exists(dataset_path):
+        os.makedirs(dataset_path)
+
+    save_path = os.path.join(dataset_path, args.experimentid)
     if not os.path.exists(save_path) and not args.val:
         os.makedirs(save_path)
 
