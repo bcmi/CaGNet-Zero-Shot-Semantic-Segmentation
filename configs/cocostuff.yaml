@@ -111,7 +111,7 @@ top_p: 91                          # retain top_p category indices with the high
 
  ## initialization ##
 init: kaiming                      # initialization [gaussian/kaiming/xavier/orthogonal]
-init_model: ./trained_models/deeplabv2_resnet101_init.pth
+init_model: ./trained_models/spnet_cocostuff_init.pth
 #init_model: ./trained_models/cocostuff_ourbest.pth
 
  ## layers ##
