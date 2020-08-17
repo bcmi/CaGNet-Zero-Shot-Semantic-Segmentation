@@ -92,11 +92,11 @@ conda env create -f CaGNet_environment.yaml
 
   - Pascal-VOC
     1) download [CaGNet_VOC2012_data.tar](https://pan.baidu.com/s/17aEkQuwL7VQRSACUV97Pkw) (extraction code: *beau*) into directory **./dataset/voc12/**
-    2) extract the above .tar file to form **./dataset/voc12/images/** and **./dataset/voc12/annotations/**
+    2) uncompress the above .tar file to form **./dataset/voc12/images/** and **./dataset/voc12/annotations/**
 
   - Pascal-Context
     1) download [CaGNet_context_data.tar](https://pan.baidu.com/s/11f22mnXQRGAR78QR8-W9ow) (extraction code: *rk29*) into directory **./dataset/context/**
-    2) extract the above .tar file to form **./dataset/context/images/** and **./dataset/context/annotations/**
+    2) uncompress the above .tar file to form **./dataset/context/images/** and **./dataset/context/annotations/**
 
   - COCO-Stuff
     1) follow the setup instructions on the [COCO-Stuff homepage](https://github.com/nightrome/cocostuff) to obtain two folders: **images** and **annotations**.
