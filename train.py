@@ -78,7 +78,7 @@ def main():
     else:
         log_file = os.path.join(save_path, 'logs_st_transfer.txt')
     if args.val:
-        log_file = os.path.join(config['save_path'], config['dataset'], 'logs_test.txt')
+        log_file = os.path.join(dataset_path, 'logs_test.txt')
     logger = logWritter(log_file)
 
     if args.schedule == 'step1':
