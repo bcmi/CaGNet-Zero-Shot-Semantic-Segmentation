@@ -23,7 +23,7 @@ If you find our work useful in your research, please consider citing:
 
 Existing semantic segmentation models heavily rely on dense pixel-wise annotations. To reduce the annotation pressure, we focus on a challenging task named zero-shot semantic segmentation, which aims to segment unseen objects with zero annotations. This can be achieved by transferring knowledge across categories via semantic word embeddings. In this paper, we propose a novel context-aware feature generation method for zero-shot segmentation named as *CaGNet*. In particular, with the observation that a pixel-wise feature highly depends on its contextual information, we insert a contextual module in a segmentation network to capture the pixel-wise contextual information, which guides the process of generating more diverse and context-aware features from semantic word embeddings. Our method achieves state-of-the-art results on three benchmark datasets for zero-shot segmentation.
 
-[![Overview of Our CaGNet](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/tree/master/figures/overview.jpg?raw=true)](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/tree/master/figures/overview.jpg?raw=true)
+[![Overview of Our CaGNet](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/tree/master/figures/overview.JPG?raw=true)](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/tree/master/figures/overview.JPG?raw=true)
 
 ## Results on Pascal-Context, COCO-Stuff and Pascal-VOC
 
@@ -60,13 +60,14 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
 | ZS3Net+ST | 0.3328 |   0.6302   | 0.8095 | 0.7382 | 0.7802 | 0.2115 |
 | **CaGNet+ST** | **0.4366** | **0.6577** | **0.8164** | **0.7560** | **0.7859** | **0.3031** |
 
-**Please note that our reproduced results of SPNet on Pascal-VOC dataset are obtained using their released model and code with careful tuning, but still lower than their reported results. “ST” in the above tables stands for self-training. **
+Please note that our reproduced results of SPNet on Pascal-VOC dataset are obtained using their released model and code with careful tuning, but still lower than their reported results. “ST” in the above tables stands for self-training. 
 
 ## Hardware Dependency
 
 Our released code temporarily supports:
 
  <font color=green>√</font>  NVIDIA TESLA V100 32GB  ≥  1
+
  <font color=red>×</font>  NVIDIA GeForce GTX 1080 8GB  *  4
 
 ## Getting Started
