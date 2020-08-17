@@ -1,0 +1,148 @@
+# Copyright (C) 2019 NVIDIA Corporation.  All rights reserved.
+# Licensed under the CC BY-NC-SA 4.0 license
+# (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
+
+
+################
+# data options #
+################
+
+ ## loader ##
+BATCH_SIZE:
+  TRAIN: 8
+  TEST: 1
+SPLIT:
+  TRAIN: train
+  TEST: novel
+NUM_WORKERS: 8
+DATAMODE: LoaderZLS 
+
+ ## image ##
+IMAGE:
+  MEAN:
+    R: 122.675
+    G: 116.669
+    B: 104.008
+  SIZE:
+    TRAIN: 368
+    TEST: 512
+WARP_IMAGE: True
+
+ ## paths ##
+ROOT: ./dataset/cocostuff/         # path to images/annotations
+datadir: ./dataset/                # path to category splits/semantic word embeddings
+save_path: ./Results/              # path to save experiment results
+
+ ## dataset setting ##
+dataset: cocostuff                 # dataset [voc12/context/cocostuff]
+num_unseen: 15                     # total of unseen categories
+
+ ## semantic word embedding ##
+embedding: fastnvec                # word embedding method [word2vec/fasttext/fastnvec]
+emb_without_normal: False          # whether not to normalize semantic word embeddings
+
+ ## intervals ##
+display_interval: 10               # how often(iter) to display outputs on screen
+log_interval: 100                  # how often(iter) to log the training status
+snapshot: 1000                     # how often(iter) to save the trained models
+
+
+########################
+# optimization options #
+########################
+
+ ## iterations ##
+#ITER_MAX: 40000                   # maximum number of training iterations
+ITER_MAX_TRANSFER: 6000            # maximum number of training iterations in finetuning
+
+ ## optimizer ##
+dis_opt:
+  OPTIMIZER: adam
+  #lr: 0.0005
+  lr_transfer: 0.00001
+  weight_decay: 0.0005
+back_opt:
+  OPTIMIZER: sgd
+  #lr: 0.00025
+  lr_transfer: 0.0
+  WEIGHT_DECAY: 0.0005
+  MOMENTUM: 0.9
+gen_opt:
+  OPTIMIZER: adam
+  #lr: 0.0002
+  lr_transfer: 0.00001
+  weight_decay: 0
+
+ ## learning rate scheduler ##
+dis_scheduler:
+  lr_policy: lambda
+  start_decay_iter: 3000
+  step_size: 2000
+  gamma: 0.3
+back_scheduler:
+  lr_policy: poly
+  lr_decay_iter: 10
+  power: 0.9
+gen_scheduler:
+  lr_policy: lambda
+  start_decay_iter: 3000
+  step_size: 2000
+  gamma: 0.3
+
+ ## discriminator ##
+criticUpdates: 1                   # times to update Discriminator in each iteration
+
+ ## backbone ##
+update_back: f                     # update backbone when 'update_back == t', no update otherwise
+
+ ## finetuning ##
+gen_unseen_rate: 59                # augment unseen categories for larger possibilities
+interval_step1: 100                # iterations to execute continuously for step1
+interval_step2: 100                # iterations to execute continuously for step2
+first: step1                       # execute [step1/step2] at first
+
+ ## self-training ##
+top_p: 91                          # retain top_p category indices with the highest prediction scores
+
+
+###################
+# network options #
+###################
+
+ ## initialization ##
+init: kaiming                      # initialization [gaussian/kaiming/xavier/orthogonal]
+init_model: ./Results/cocostuff/0/models/00040000.pth
+
+ ## layers ##
+gen:
+  in_dim_mlp: 1200                 # input dimension for the generator: word embedding (600) + latent code (600)
+  out_dim_mlp: 600                 # output dimension for the generated fake features
+dis:
+  in_dim_fc: 600                   # input dimension for the shared fc: real/fake feature size
+  out_dim_fc: 1024                 # output dimension for the shared fc
+  norm_fc: none                    # normalization method for the shared fc [none/bn/in/adain]
+  activ_fc: relu                   # activation function for the shared fc [none/relu/lrelu/tanh]
+  drop_fc: 0.5                     # dropout rate for the shared fc [none/$float$]
+  out_dim_cls: 183                 # output dimension for classification: seen + unseen + bg
+back:
+  n_classes: 600                   # output dimension for the real features
+
+
+################
+# loss options #
+################
+
+ignore_index: 255                  # ignored index in GT segmentation mask when calculating losses
+loss_count: 8                      # count of losses to display in step1
+lambda_D_gp: 10                    # gradient penalty coefficient in wgan mode for Discriminator
+lambda_D_cls_real: 0.75            # real-feature classification loss coefficient for Discriminator
+lambda_D_cls_fake: 0.25            # fake-feature classification loss coefficient for Discriminator
+lambda_D_cls_fake_transfer: 1      # fake-feature classification loss coefficient for Discriminator in finetuning
+lambda_B_KLD: 100                  # KLDiv loss coefficient for Backbone
+lambda_B_cls: 0.5                  # classification loss coefficient for Backbone
+lambda_G_Content: 50               # content loss coefficient for Generator
+lambda_G_GAN: 1                    # adversarial loss coefficient for Generator
+lambda_G_cls: 0                    # classification loss coefficient for Generator
+lambda_G_cls_transfer: 1           # classification loss coefficient for Generator in finetuning
+content_loss: MMDLoss              # type of content loss [PerceptualLoss/ContentLoss/ContentLossMSE/MMDLoss]
+gan_type: lsgan                    # type of Adversarial loss [wgan-gp/wgan/lsgan/gan]
