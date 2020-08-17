@@ -23,7 +23,7 @@ If you find our work useful in your research, please consider citing:
 
 Existing semantic segmentation models heavily rely on dense pixel-wise annotations. To reduce the annotation pressure, we focus on a challenging task named zero-shot semantic segmentation, which aims to segment unseen objects with zero annotations. This can be achieved by transferring knowledge across categories via semantic word embeddings. In this paper, we propose a novel context-aware feature generation method for zero-shot segmentation named as *CaGNet*. In particular, with the observation that a pixel-wise feature highly depends on its contextual information, we insert a contextual module in a segmentation network to capture the pixel-wise contextual information, which guides the process of generating more diverse and context-aware features from semantic word embeddings. Our method achieves state-of-the-art results on three benchmark datasets for zero-shot segmentation.
 
-[![Overview of Our CaGNet](./figures/overview.JPG?raw=true)](./figures/overview.JPG?raw=true)
+[![Overview of Our CaGNet](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/blob/master/figures/overview.JPG)](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/blob/master/figures/overview.JPG)
 
 ## Results on Pascal-Context, COCO-Stuff and Pascal-VOC
 
