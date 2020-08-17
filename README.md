@@ -105,6 +105,9 @@ conda env create -f CaGNet_environment.yaml
 4.Download *deeplabv2* pre-trained weight and our optimal models.
 
   - download [deeplabv2_resnet101_init.pth](https://pan.baidu.com/s/1N0spp4zKBWpo6pD2kCbqeA) (extraction code: *5o0m*) into directory **./trained_models/**
+  
+  - download [spnet_cocostuff_init.pth](https://pan.baidu.com/s/1VL5TVwYm3oFmUPF2BC2ifw) (extraction code: *vghr*) into directory **./trained_models/**
+  
   - download [voc12_ourbest.pth](https://pan.baidu.com/s/11npWXmwMNLpOfj0wjWOiGg) (extraction code: *nxj4*) into directory **./trained_models/**
 
   - download [context_ourbest.pth](https://pan.baidu.com/s/1-ULedCAlo16kmbJKUrjsAQ) (extraction code: *0x2i*) into directory **./trained_models/**
@@ -156,7 +159,7 @@ python train.py --config ./configs/cocostuff.yaml --init_model ./trained_models/
 
 ## Acknowledgement
 
-Some of the codes are built upon [FUNIT](https://github.com/NVlabs/FUNIT) and [ZS3Net](https://github.com/valeoai/ZS3). Thanks them for their great work!
+Some of the codes are built upon [FUNIT](https://github.com/NVlabs/FUNIT), [ZS3Net](https://github.com/valeoai/ZS3), and [SPNet](https://github.com/subhc/SPNet). Thanks them for their great work!
 
 If you get any problems or if you find any bugs, don't hesitate to comment on GitHub or make a pull request!
 
