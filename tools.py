@@ -134,7 +134,7 @@ def get_split(cfg):
     seen_classes = np.load(dataset_path + '/split/seen_cls.npy').astype(np.int32)
     novel_classes = np.load(dataset_path + '/split/novel_cls.npy').astype(np.int32)
     seen_novel_classes = np.concatenate((seen_classes, novel_classes), axis=0)
-    all_labels  = np.genfromtxt(dataset_path + '/labels_2.txt', delimiter='\t', usecols=1, dtype='str')
+    all_labels  = np.genfromtxt(dataset_path + '/labels_refined.txt', delimiter='\t', usecols=1, dtype='str')
 
     visible_classes = seen_classes
     visible_classes_test = seen_novel_classes
