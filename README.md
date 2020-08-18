@@ -4,7 +4,7 @@ Code for our **ACM MM 2020** paper *"Context-aware Feature Generation for Zero-s
 
 Created by [Zhangxuan Gu](https://github.com/zhangxgu), [Siyuan Zhou](https://github.com/Siyuan-Zhou), [Li Niu\*](https://github.com/ustcnewly), Zihan Zhao, Liqing Zhang\*.
 
-<font color=blue>(Coming Soon !)</font> Paper Link: [[arXiv\]]()
+Paper Link: [[arXiv]](http://arxiv.org/abs/2008.06893)
 
 ## Citation
 
