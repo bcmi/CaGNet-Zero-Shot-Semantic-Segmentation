@@ -94,7 +94,6 @@ class DeepLabV2_local(nn.Sequential):
         h = self.aspp(h)
 
         # Contextual Module
-        c = h.size(1)
         h1 = self.contextual1(torch.sigmoid(h))
         h2 = self.contextual2(h1)
         h3 = self.contextual3(h2)     
