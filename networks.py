@@ -1,3 +1,40 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Siyuan-Zhou 
+bcmi
+/
+CaGNet-Zero-Shot-Semantic-Segmentation
+8
+39
+3
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+CaGNet-Zero-Shot-Semantic-Segmentation/networks.py /
+@zhangxgu
+zhangxgu update the network
+…
+Latest commit 58d2ed2 1 hour ago
+ History
+ 2 contributors
+@Siyuan-Zhou@zhangxgu
+266 lines (226 sloc)  9.2 KB
+  
+Code navigation is available!
+Navigate your code with ease. Click on function and method calls to jump to their definitions or references in the same repository. Learn more
+
 """
 Copyright (C) 2019 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license
@@ -54,11 +91,8 @@ class MSCC(nn.Module):
 class DeepLabV2_local(nn.Sequential):
     """DeepLab v2"""
 
-    def __init__(self, n_classes, n_blocks, pyramids, contextual, freeze_bn):
+    def __init__(self, n_classes, n_blocks, pyramids, freeze_bn):
         super(DeepLabV2_local, self).__init__()
-        self.contextual = contextual
-        if contextual != 1:
-            raise NotImplementedError('Invalid contextual id {}.' % contextual)
 
         self.add_module(
             "layer1",
@@ -80,11 +114,8 @@ class DeepLabV2_local(nn.Sequential):
         self.add_module("contextual1", _ConvReLU_(n_classes, n_classes, 3, 1, 1, 1))
         self.add_module("contextual2", _ConvReLU_(n_classes, n_classes, 3, 1, 2, 2))
         self.add_module("contextual3", _ConvReLU_(n_classes, n_classes, 3, 1, 5, 5))
-        #######################
         self.add_module("contextualpool", _ConvReLU_(3*n_classes, n_classes, 1, 1, 0, 1))
-        #######################
         self.add_module("contextualsmall", _ConvReLU_(3*n_classes, 3, 1, 1, 0, 1))
-        #######################
         self.add_module("contextuallocalmu", _ConvReLU_(n_classes, n_classes, 3, 1, 1, 1, relu=False))
         self.add_module("contextuallocalsigma",_ConvReLU_(n_classes, n_classes, 3, 1, 1, 1))
 
@@ -103,22 +134,12 @@ class DeepLabV2_local(nn.Sequential):
         c = h.size(1)
         h1 = self.contextual1(torch.sigmoid(h))
         h2 = self.contextual2(h1)
-        h3 = self.contextual3(h2)
-        ##################################
-        #h1 = self.contextualpool(torch.cat([h1, h2, h3], dim=1))
-        ##################################
-        
+        h3 = self.contextual3(h2)     
         h4 = self.contextualsmall(torch.cat([h1, h2, h3], dim=1)) 
-        #print (h1.size(),h4[:,0,:,:].size(),(h4[:,0,:,:].repeat(1,c,1,1)).size())
         h1 = torch.mul(h1,torch.sigmoid(h4[:,0,:,:].unsqueeze(1).repeat(1,c,1,1)))
         h2 = torch.mul(h2,torch.sigmoid(h4[:,1,:,:].unsqueeze(1).repeat(1,c,1,1)))
         h3 = torch.mul(h3,torch.sigmoid(h4[:,2,:,:].unsqueeze(1).repeat(1,c,1,1)))
         h1 = self.contextualpool(torch.cat([h1, h2, h3], dim=1))
-        
-        ##################################
-
-
-
 
         localmu = F.interpolate(self.contextuallocalmu(h1), size=h.size()[2:], mode="bilinear")
         localsigma = F.interpolate(self.contextuallocalsigma(h1), size=h.size()[2:], mode="bilinear")
@@ -159,7 +180,6 @@ def DeepLabV2_ResNet101_local(hp):
         n_classes=hp['n_classes'], 
         n_blocks=[3, 4, 23, 3], 
         pyramids=[6, 12, 18, 24], 
-        contextual=hp['contextual'],
         freeze_bn=True
     )
 
