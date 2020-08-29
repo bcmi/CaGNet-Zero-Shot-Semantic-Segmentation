@@ -68,7 +68,7 @@ Please note that our reproduced results of SPNet on Pascal-VOC dataset are obtai
 
 ## Hardware Dependency
 
-Our released code temporarily supports a single GPU or multiple GPUs. To acquire satisfactory training results, we advised that each GPU card should be at least 32GB with batch size larger than 8.
+Our released code temporarily supports a single GPU or multiple GPUs. To acquire satisfactory training results, we advise that each GPU card should be at least 32GB with batch size larger than 8.
 
 The results in the conference paper / this repository are obtained on a single 32GB GPU with batch size 8. If you use multiple GPUs (each ≥ 32GB) to train *CaGNet*, you might hopefully achieve better results.
 
@@ -106,7 +106,7 @@ conda env create -f CaGNet_environment.yaml
 
   - download [deeplabv2_resnet101_init.pth](https://pan.baidu.com/s/1N0spp4zKBWpo6pD2kCbqeA) (extraction code: *5o0m*) into directory **./trained_models/**
   
-  - download [spnet_cocostuff_init.pth](https://pan.baidu.com/s/1VL5TVwYm3oFmUPF2BC2ifw) (extraction code: *vghr*) into directory **./trained_models/**
+  - download [spnet_cocostuff_init.pth](https://pan.baidu.com/s/18OQF-J-Hlj-uZHf4qcZ5TA) (extraction code: *qjpo*) into directory **./trained_models/**
   
   - download [voc12_ourbest.pth](https://pan.baidu.com/s/11npWXmwMNLpOfj0wjWOiGg) (extraction code: *nxj4*) into directory **./trained_models/**
 
@@ -159,7 +159,7 @@ python train.py --config ./configs/cocostuff.yaml --init_model ./trained_models/
 
 ## Acknowledgement
 
-Some of the codes are built upon [FUNIT](https://github.com/NVlabs/FUNIT), [ZS3Net](https://github.com/valeoai/ZS3), and [SPNet](https://github.com/subhc/SPNet). Thanks them for their great work!
+Some of the codes are built upon [FUNIT](https://github.com/NVlabs/FUNIT) and [SPNet](https://github.com/subhc/SPNet). Thanks them for their great work!
 
 If you get any problems or if you find any bugs, don't hesitate to comment on GitHub or make a pull request!
 
