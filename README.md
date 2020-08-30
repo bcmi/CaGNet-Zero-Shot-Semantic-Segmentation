@@ -110,7 +110,7 @@ conda env create -f CaGNet_environment.yaml
 
     --> **deeplabv2_resnet101_init.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/y8H4qedH2) or [BaiduNetDisk](https://pan.baidu.com/s/1N0spp4zKBWpo6pD2kCbqeA) (extraction code: *5o0m*) 
   
-  - SPNet pretrained weight for COCO-stuff
+  - SPNet pretrained weight for COCO-Stuff
 
     --> **spnet_cocostuff_init.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/HjIHArLR4) or [BaiduNetDisk](https://pan.baidu.com/s/18OQF-J-Hlj-uZHf4qcZ5TA) (extraction code: *qjpo*)
   
@@ -122,7 +122,7 @@ conda env create -f CaGNet_environment.yaml
 
     --> **context_ourbest.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/efHuY6bsz) or [BaiduNetDisk](https://pan.baidu.com/s/1-ULedCAlo16kmbJKUrjsAQ) (extraction code: *0x2i*)
 
-  - <font color=blue>(Coming Soon !)</font> our best model on COCO-stuff
+  - <font color=blue>(Coming Soon !)</font> our best model on COCO-Stuff
 
     --> **cocostuff_ourbest.pth**
 
