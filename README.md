@@ -91,10 +91,12 @@ conda env create -f CaGNet_environment.yaml
 3.Download dataset.
 
   - Pascal-VOC
+
     --> **CaGNet_VOC2012_data.tar** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/HBqSsFWTl) or [BaiduNetDisk](https://pan.baidu.com/s/17aEkQuwL7VQRSACUV97Pkw) (extraction code: *beau*)
     1) download the above .tar file into directory **./dataset/voc12/**
     2) uncompress it to form **./dataset/voc12/images/** and **./dataset/voc12/annotations/**
   - Pascal-Context
+
     --> **CaGNet_context_data.tar** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/KOE8KxwrU) or [BaiduNetDisk](https://pan.baidu.com/s/11f22mnXQRGAR78QR8-W9ow) (extraction code: *rk29*)
     1) download the above .tar file into directory **./dataset/context/**
     2) uncompress it to form **./dataset/context/images/** and **./dataset/context/annotations/**
@@ -105,18 +107,23 @@ conda env create -f CaGNet_environment.yaml
 4.Download pre-trained weights and our optimal models into directory **./trained_models/**
 
   - deeplabv2 pretrained weight for Pascal-VOC and Pascal-Context
+
     --> **deeplabv2_resnet101_init.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/y8H4qedH2) or [BaiduNetDisk](https://pan.baidu.com/s/1N0spp4zKBWpo6pD2kCbqeA) (extraction code: *5o0m*) 
   
   - SPNet pretrained weight for COCO-stuff
+
     --> **spnet_cocostuff_init.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/HjIHArLR4) or [BaiduNetDisk](https://pan.baidu.com/s/18OQF-J-Hlj-uZHf4qcZ5TA) (extraction code: *qjpo*)
   
   - our best model on Pascal-VOC
+
     --> **voc12_ourbest.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/RLYautiFq) or [BaiduNetDisk](https://pan.baidu.com/s/11npWXmwMNLpOfj0wjWOiGg) (extraction code: *nxj4*)
     
   - our best model on Pascal-Context
+
     --> **context_ourbest.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/efHuY6bsz) or [BaiduNetDisk](https://pan.baidu.com/s/1-ULedCAlo16kmbJKUrjsAQ) (extraction code: *0x2i*)
 
   - <font color=blue>(Coming Soon !)</font> our best model on COCO-stuff
+
     --> **cocostuff_ourbest.pth**
 
 ### Training
