@@ -122,9 +122,9 @@ conda env create -f CaGNet_environment.yaml
 
     --> **context_ourbest.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/efHuY6bsz) or [BaiduNetDisk](https://pan.baidu.com/s/1-ULedCAlo16kmbJKUrjsAQ) (extraction code: *0x2i*)
 
-  - <font color=blue>(Coming Soon !)</font> our best model on COCO-Stuff
+  - our best model on COCO-Stuff
 
-    --> **cocostuff_ourbest.pth**
+    --> **cocostuff_ourbest.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/yq3H8MX06) or [BaiduNetDisk](https://pan.baidu.com/s/1lLm1ovZszEOo6Myu-RoU4w) (extraction code: *xl88*)
 
 ### Training
 
@@ -163,7 +163,7 @@ python train.py --config ./configs/voc12.yaml --init_model ./trained_models/voc1
 python train.py --config ./configs/context.yaml --init_model ./trained_models/context_ourbest.pth --val
 ```
 
-3.<font color=blue>(Coming Soon !)</font> Test our best model on COCO-Stuff dataset
+3.Test our best model on COCO-Stuff dataset
 
 ```
 python train.py --config ./configs/cocostuff.yaml --init_model ./trained_models/cocostuff_ourbest.pth --val
