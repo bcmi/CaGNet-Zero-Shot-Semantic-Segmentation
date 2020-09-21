@@ -33,15 +33,25 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
 
 ### Basic Settings
 
-  - **Inductive or Transtuctive:** inductive, i.e., no test samples (images and annotations) are available during training
+  - **Inductive or Transductive:** 
 
-  - **Generalized or Non-generalized**: generalized, i.e., both seen and unseen categories can appear in test samples
+    Inductive, i.e., no test samples (images and annotations) are available during training.
 
-  - **Backbone Network:** DeepLabV2
+  - **Generalized or Non-generalized**: 
 
-  - **Semantic Word Embedding:** Word2vec & FastText
+    Generalized, i.e., both seen and unseen categories can appear in test samples.
 
-  - **Baselines:**  SPNet \[[github](https://github.com/subhc/SPNet), [paper](https://ieeexplore.ieee.org/document/8953827)\] & ZS3Net \[[github](https://github.com/valeoai/ZS3), [paper](https://arxiv.org/pdf/1906.00817.pdf)\]
+  - **Baselines:** 
+
+    SPNet \[[github](https://github.com/subhc/SPNet), [paper](https://ieeexplore.ieee.org/document/8953827)\] & ZS3Net \[[github](https://github.com/valeoai/ZS3), [paper](https://arxiv.org/pdf/1906.00817.pdf)\]
+
+  - **Backbone Network:** 
+
+    DeepLabV2 (following SPNet)
+
+  - **Semantic Word Embedding:** 
+
+    Word2vec & FastText
 
   - **Datasets:**
     
@@ -49,20 +59,27 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
     
       **Samples:** 4998 train / 5105 test
       
-      **Split:** 33 classes: 29 seen / 4 unseen "cow, motorbike, sofa, cat"
+      **Split:** 33 classes including 29 seen / 4 unseen "cow, motorbike, sofa, cat"
       
     - COCO-Stuff
     
       **Samples:** 118288 train / 5001 test
       
-      **Split:** 182 classes: 167 seen / 15 unseen (following SPNet)
+      **Split:** 182 classes including 167 seen / 15 unseen (following SPNet)
       
     - Pascal-VOC and SBD (Semantic Boundary Dataset)
     
       **Samples:** 11685 train / 1449 test
       
-      **Split:** 20 classes: 15 seen / 5 unseen (following SPNet)
+      **Split:** 20 classes including 15 seen / 5 unseen (following SPNet)
+  
+  - **"Background" or Not:** 
 
+    ZS3Net uses the word embedding of "background" as the semantic representation of all categories (e.g., sky and ground) belonging to "background", which seems a little unreasonable, while SPNet ignores "background" in both training and testing. Although including "background" can bring large performance gain, We follow SPNet and ignore it.
+  
+  - **Additional Operation on Train Samples:** 
+
+    Since train images may contain pixels that do not belong to seen categories (e.g. unseen categories, background, or no label), we mark the annotations of these pixels as 'ignored' so that only seen categories are visible during training.
 
 ### Results
 
