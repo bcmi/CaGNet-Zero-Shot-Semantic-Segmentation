@@ -75,7 +75,7 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
   
   - **"Background" or Not:** 
 
-    ZS3Net uses the word embedding of "background" as the semantic representation of all categories (e.g., sky and ground) belonging to "background", which seems a little unreasonable, while SPNet ignores "background" in both training and testing. Although including "background" can bring large performance gain, We follow SPNet and ignore it all the time.
+    ZS3Net uses the word embedding of "background" as the semantic representation of all categories (e.g., sky and ground) belonging to "background", which seems a little unreasonable, while SPNet ignores "background" in both training and testing. Although including "background" can bring large performance gain, we follow SPNet and ignore it all the time.
   
   - **Additional Operation on Train Samples:** 
 
