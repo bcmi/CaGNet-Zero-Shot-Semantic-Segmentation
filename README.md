@@ -25,11 +25,39 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
 
 [![Overview of Our CaGNet](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/blob/master/figures/overview.JPG?raw=true)](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/blob/master/figures/overview.JPG?raw=true)
 
-## Results on Pascal-Context, COCO-Stuff and Pascal-VOC
+## Experiments
 
-We compare our *CaGNet* with SPNet \[[github](https://github.com/subhc/SPNet), [paper](https://ieeexplore.ieee.org/document/8953827)\] and ZS3Net \[[github](https://github.com/valeoai/ZS3), [paper](https://arxiv.org/pdf/1906.00817.pdf)\].
+#### Basic Settings
 
-“ST” in the following tables stands for self-training mentioned in ZS3Net. 
+  - **Inductive or Transtuctive:** inductive, i.e., no test samples (images and annotations) are available during training
+
+  - **Generalized or Non-generalized**: generalized, i.e., both seen and unseen categories can appear in test samples
+
+  - **Backbone Network:** DeepLabV2
+
+  - **Semantic Word Embedding:** Word2vec & FastText
+
+  - **Baselines:**  SPNet \[[github](https://github.com/subhc/SPNet), [paper](https://ieeexplore.ieee.org/document/8953827)\] & ZS3Net \[[github](https://github.com/valeoai/ZS3), [paper](https://arxiv.org/pdf/1906.00817.pdf)\]
+
+  - **Datasets:**
+    
+    - Pascal-Context
+    
+      **Samples:** 4998 train / 5105 test
+      **Split:** 33 classes: 29 seen / 4 unseen "cow, motorbike, sofa, cat"
+    - COCO-Stuff
+    
+      **Samples:** 118288 train / 5001 test
+      **Split:** 182 classes: 167 seen / 15 unseen (following SPNet)
+    - Pascal-VOC and SBD (Semantic Boundary Dataset)
+    
+      **Samples:** 11685 train / 1449 test
+      **Split:** 20 classes: 15 seen / 5 unseen (following SPNet)
+
+
+#### Experiment Results:
+
+“ST” in the following tables stands for self-training mentioned in ZS3Net.
 
 **Our Results on Pascal-Context dataset**
 
@@ -74,7 +102,7 @@ The results in the conference paper / this repository are obtained on a single 3
 
 ## Getting Started
 
-### Installation
+#### Installation
 
 1.Clone this repository.
 
@@ -126,7 +154,7 @@ conda env create -f CaGNet_environment.yaml
 
     --> **cocostuff_ourbest.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/yq3H8MX06) or [BaiduNetDisk](https://pan.baidu.com/s/1lLm1ovZszEOo6Myu-RoU4w) (extraction code: *xl88*)
 
-### Training
+#### Training
 
 1.Train on Pascal-VOC dataset
 
@@ -149,7 +177,7 @@ python train.py --config ./configs/cocostuff.yaml --schedule step1
 python train.py --config ./configs/cocostuff_finetune.yaml --schedule mixed
 ```
 
-### Testing
+#### Testing
 
 1.Test our best model on Pascal-VOC dataset
 
@@ -168,6 +196,10 @@ python train.py --config ./configs/context.yaml --init_model ./trained_models/co
 ```
 python train.py --config ./configs/cocostuff.yaml --init_model ./trained_models/cocostuff_ourbest.pth --val
 ```
+
+## Try on custom data
+
+COMING SOON !
 
 ## Acknowledgement
 
