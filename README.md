@@ -6,6 +6,10 @@ Created by [Zhangxuan Gu](https://github.com/zhangxgu), [Siyuan Zhou](https://gi
 
 Paper Link: [[arXiv]](http://arxiv.org/abs/2008.06893)
 
+## Visualization on Pascal-VOC
+
+[![Visualization on Pascal-VOC](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/blob/master/figures/visualization.JPG?raw=true)](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/blob/master/figures/visualization.JPG?raw=true)
+
 ## Citation
 
 If you find our work useful in your research, please consider citing:
@@ -27,7 +31,7 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
 
 ## Experiments
 
-#### Basic Settings
+### Basic Settings
 
   - **Inductive or Transtuctive:** inductive, i.e., no test samples (images and annotations) are available during training
 
@@ -55,7 +59,7 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
       **Split:** 20 classes: 15 seen / 5 unseen (following SPNet)
 
 
-#### Experiment Results:
+### Experiment Results:
 
 “ST” in the following tables stands for self-training mentioned in ZS3Net.
 
@@ -102,7 +106,7 @@ The results in the conference paper / this repository are obtained on a single 3
 
 ## Getting Started
 
-#### Installation
+### Installation
 
 1.Clone this repository.
 
@@ -154,7 +158,7 @@ conda env create -f CaGNet_environment.yaml
 
     --> **cocostuff_ourbest.pth** : [BCMI-Cloud](https://bcmi.cloud:5001/sharing/yq3H8MX06) or [BaiduNetDisk](https://pan.baidu.com/s/1lLm1ovZszEOo6Myu-RoU4w) (extraction code: *xl88*)
 
-#### Training
+### Training
 
 1.Train on Pascal-VOC dataset
 
@@ -177,7 +181,7 @@ python train.py --config ./configs/cocostuff.yaml --schedule step1
 python train.py --config ./configs/cocostuff_finetune.yaml --schedule mixed
 ```
 
-#### Testing
+### Testing
 
 1.Test our best model on Pascal-VOC dataset
 
