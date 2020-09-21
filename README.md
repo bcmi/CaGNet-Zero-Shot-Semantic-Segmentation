@@ -35,7 +35,7 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
 
   - **Inductive or Transductive:** 
 
-    Inductive, i.e., no test samples (images and annotations) are available during training.
+    Inductive, i.e., no test samples (images and annotations) are available during training (including finetuning).
 
   - **Generalized or Non-generalized**: 
 
@@ -75,11 +75,11 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
   
   - **"Background" or Not:** 
 
-    ZS3Net uses the word embedding of "background" as the semantic representation of all categories (e.g., sky and ground) belonging to "background", which seems a little unreasonable, while SPNet ignores "background" in both training and testing. Although including "background" can bring large performance gain, We follow SPNet and ignore it.
+    ZS3Net uses the word embedding of "background" as the semantic representation of all categories (e.g., sky and ground) belonging to "background", which seems a little unreasonable, while SPNet ignores "background" in both training and testing. Although including "background" can bring large performance gain, We follow SPNet and ignore it all the time.
   
   - **Additional Operation on Train Samples:** 
 
-    Since train images may contain pixels that do not belong to seen categories (e.g. unseen categories, background, or no label), we mark the annotations of these pixels as 'ignored' so that only seen categories are visible during training.
+    Since train images may contain pixels that do not belong to seen categories (e.g. unseen categories, background, or no label), we mark the annotations of these pixels as 'ignored' so that only seen categories are visible during training (including finetuning).
 
 ### Results
 
