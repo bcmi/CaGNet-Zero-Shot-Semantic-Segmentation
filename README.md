@@ -48,18 +48,23 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
     - Pascal-Context
     
       **Samples:** 4998 train / 5105 test
+      
       **Split:** 33 classes: 29 seen / 4 unseen "cow, motorbike, sofa, cat"
+      
     - COCO-Stuff
     
       **Samples:** 118288 train / 5001 test
+      
       **Split:** 182 classes: 167 seen / 15 unseen (following SPNet)
+      
     - Pascal-VOC and SBD (Semantic Boundary Dataset)
     
       **Samples:** 11685 train / 1449 test
+      
       **Split:** 20 classes: 15 seen / 5 unseen (following SPNet)
 
 
-### Experiment Results:
+### Results
 
 “ST” in the following tables stands for self-training mentioned in ZS3Net.
 
