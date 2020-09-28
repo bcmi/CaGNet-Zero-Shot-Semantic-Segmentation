@@ -6,6 +6,10 @@ Created by [Zhangxuan Gu](https://github.com/zhangxgu), [Siyuan Zhou](https://gi
 
 Paper Link: [[arXiv]](http://arxiv.org/abs/2008.06893)
 
+## News
+
+In our journal extension *CaGNetv2* \[[arXiv](), [github](https://github.com/bcmi/CaGNetv2-Zero-Shot-Semantic-Segmentation)\], we extend pixel-wise feature generation and finetuning to patch-wise feature generation and finetuning.
+
 ## Visualization on Pascal-VOC
 
 [![Visualization on Pascal-VOC](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/blob/master/figures/visualization.JPG?raw=true)](https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation/blob/master/figures/visualization.JPG?raw=true)
@@ -35,11 +39,11 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
 
   - **Inductive or Transductive:** 
 
-    Inductive, i.e., no test samples (images and annotations) are available during training (including finetuning).
+    Inductive  ->  No test samples (images and annotations) are available during training (including finetuning).
 
   - **Generalized or Non-generalized**: 
 
-    Generalized, i.e., both seen and unseen categories can appear in test samples.
+    Generalized  ->  Both seen and unseen categories can appear in test samples.
 
   - **Baselines:** 
 
@@ -47,11 +51,11 @@ Existing semantic segmentation models heavily rely on dense pixel-wise annotatio
 
   - **Backbone Network:** 
 
-    DeepLabV2 (following SPNet)
+    DeepLabV2 (ResNet-101) pre-trained on ImageNet (following SPNet)
 
   - **Semantic Word Embedding:** 
 
-    Word2vec & FastText
+    Word2vec (300-dim) & FastText (300-dim)
 
   - **Datasets:**
     
@@ -223,7 +227,11 @@ python train.py --config ./configs/context.yaml --init_model ./trained_models/co
 python train.py --config ./configs/cocostuff.yaml --init_model ./trained_models/cocostuff_ourbest.pth --val
 ```
 
-## Try on custom data
+### Visualization
+
+COMING SOON !
+
+## Try on Custom Data
 
 COMING SOON !
 
