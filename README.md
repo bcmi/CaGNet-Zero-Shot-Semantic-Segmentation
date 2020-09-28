@@ -8,7 +8,7 @@ Paper Link: [[arXiv]](http://arxiv.org/abs/2008.06893)
 
 ## News
 
-In our journal extension *CaGNetv2* \[[arXiv](), [github](https://github.com/bcmi/CaGNetv2-Zero-Shot-Semantic-Segmentation)\], we extend pixel-wise feature generation and finetuning to patch-wise feature generation and finetuning.
+In our journal extension *CaGNetv2* \[[arXiv](https://arxiv.org/abs/2009.12232), [github](https://github.com/bcmi/CaGNetv2-Zero-Shot-Semantic-Segmentation)\], we extend pixel-wise feature generation and finetuning to patch-wise feature generation and finetuning.
 
 ## Visualization on Pascal-VOC
 
