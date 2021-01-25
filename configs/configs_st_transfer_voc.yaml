@@ -1,0 +1,155 @@
+# Copyright (C) 2019 NVIDIA Corporation.  All rights reserved.
+# Licensed under the CC BY-NC-SA 4.0 license
+# (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
+
+
+# data options
+  # loader
+# BATCH_SIZE:
+#     TRAIN: 2
+#     TEST: 2
+SPLIT:
+    TRAIN: train
+    TEST: novel
+NUM_WORKERS: 8
+  # image
+IMAGE:
+    MEAN:
+        R: 122.675
+        G: 116.669
+        B: 104.008
+    SIZE:
+        TRAIN: 368
+        TEST: 512
+WARP_IMAGE: True
+  # paths
+# ROOT: /home/user/VOCdevkit/VOC2012/
+# datadir: /home/user/gzx/SPNet/data/datasets          # path to dataset
+save_path: ./Results                                 # path to save results
+  # dataset setting
+DATAMODE: LoaderZLS
+dataset: voc12                                     # dataset for train/val
+noSBD_ZS3: False                                     # use voc12SBD with SPNet setting / voc12 with ZS3 setting
+  # word embedding
+embedding: fastnvec                                  # word embedding method
+emb_without_normal: False                            # normalize class embedding map or not
+  # load pretrainmodel to which gpu
+load_to: 0
+
+
+# logger options
+display_interval: 1             # how often(it) to display output during training
+log_interval: 100               # how often(it) to log the training stats
+snapshot: 1000              # how often(it) to save trained models
+
+
+# optimization options
+# ITER_MAX: 40000                 # maximum number of training iterations
+# ITER_MAX_TRANSFER: 40000        # maximum number of training iterations in transfer learning
+# ITER_MAX_ST: none              # maximum number of training iterations in self training
+ITER_MAX_ST_TRANSFER: 10000      # maximum number of training iterations in transfer learning after self training
+interval_step1: 100
+interval_step2: 100
+first: step1
+criticUpdates: 1                # times to update Discriminator in each batch
+dis_opt:
+  OPTIMIZER: adam
+  # lr: 0.00025
+  # lr_transfer: 0.0001 #0.007
+  # lr_st: none
+  lr_st_transfer: 0.0001
+  weight_decay: 0.0005
+dis_scheduler:
+  lr_policy: lambda
+  start_decay_iter: 5000
+  step_size: 2500
+  gamma: 0.5 #0.71
+back_opt:
+  OPTIMIZER: sgd
+  # lr: 0
+  # lr_transfer: 0
+  # lr_st: 0
+  lr_st_transfer: 0.0001
+  WEIGHT_DECAY: 0.0005
+  MOMENTUM: 0.9
+back_scheduler:
+  lr_policy: poly
+  # init_lr: -1 # same as lr, init in train.py
+  # init_lr_transfer: -1 # same as lr_transfer, init in train.py
+  # init_lr_st: -1 # same as lr_st, init in train.py
+  init_lr_st_transfer: 0.0001 # same as lr_st_transfer, init in train.py
+  lr_decay_iter: 10
+  power: 0.9
+  # max_iter: -1 # same as ITER_MAX, init in train.py
+  # max_iter_transfer: -1 # same as ITER_MAX_TRANSFER, init in train.py
+  # max_iter_st: -1 # same as ITER_MAX_ST, init in train.py
+  max_iter_st_transfer: 10000 # same as ITER_MAX_ST_TRANSFER, init in train.py
+gen_opt:
+  OPTIMIZER: adam
+  # lr: 0.0002
+  # lr_transfer: 0.0001 #0.0056
+  # lr_st: none
+  lr_st_transfer: 0.0001
+  weight_decay: 0
+gen_scheduler:
+  #lr_policy: constant
+  lr_policy: lambda
+  start_decay_iter: 5000
+  step_size: 2500
+  gamma: 0.5 #0.71
+
+
+# network options
+init: kaiming                   # initialization [gaussian/kaiming/xavier/orthogonal]
+#gen_version: 0                  # version of generator network
+gen:
+  in_dim_mlp: 1200
+  out_dim_mlp: 600
+#dis_version: 0                  # version of discriminator network
+dis:
+  in_dim_fc: 600
+  out_dim_fc: 1024              # output dimension of fc block
+  norm_fc: none                 # used normalization method for fc
+  activ_fc: relu                # used activation function for fc
+  drop_fc: 0.5                  # uesd dropout for fc [none/float]
+  out_dim_cls: 21
+#back_version: 1                 # 0: DeepLabV2_ResNet101_MSC, 1: DeepLabV2_ResNet101_local_MSC
+back:
+  n_classes: 600
+  contextual: 1
+
+
+# loss options
+loss_count: 8                   # count of losses
+ignore_index: 255               # ignored index when comupting classfication crossEntropyLoss
+lambda_D_gp: 10                 # gradient penalty coefficient in wgan mode for Discriminator
+lambda_D_cls_real: 0.75          # real-feature classification loss coefficient for Discriminator
+lambda_D_cls_fake: 0.25          # fake-feature classification loss coefficient for Discriminator
+lambda_D_cls_fake_transfer: 0.125  # fake-feature classification loss coefficient for Discriminator in transfer learning
+lambda_B_KLD: 100                 # KLDiv loss coefficient for Backbone
+lambda_B_cls: 0.5                 # classification loss coefficient for Backbone
+lambda_G_Content: 50             # content loss coefficient for Generator
+lambda_G_GAN: 1               # adversarial loss coefficient for Generator
+lambda_G_cls: 0               # classification loss coefficient for Generator
+lambda_G_cls_transfer: 0        # classification loss coefficient for Generator in transfer learning
+content_loss: MMDLoss       # type of content loss [PerceptualLoss/ContentLoss/ContentLossMSE/MMDLoss]
+gan_type: lsgan                 # type of Adversarial loss [wgan-gp/wgan/lsgan/gan]
+
+
+
+BATCH_SIZE:
+    TRAIN: 4
+    TEST: 4
+ROOT: ../voc2012/
+datadir: ../SPNet/data/datasets          # path to dataset
+gen_version: 0                  # version of generator network
+dis_version: 0                  # version of discriminator network
+back_version: 1                 # 0: DeepLabV2_ResNet101_MSC, 1: DeepLabV2_ResNet101_local_MSC
+
+init_back: Results/voc12/0/models_st/00010000.pth
+init_dis: Results/voc12/0/models_st/00010000.pth
+init_gen: Results/voc12/0/models_st/00010000.pth
+update_back: f   # t for update backbone, no update otherwise
+num_unseen: 5
+gen_unseen_rate: 5
+top_p: 10   # top_p in self_training
